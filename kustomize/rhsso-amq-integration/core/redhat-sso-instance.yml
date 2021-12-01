@@ -1,0 +1,115 @@
+kind: Keycloak
+apiVersion: keycloak.org/v1alpha1
+metadata:
+  name: redhat-sso
+  labels:
+    app: sso
+spec:
+  instances: 1
+  externalAccess:
+    enabled: true
+---
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+  name: amq-sso-realm
+  labels:
+    app: sso
+    realm: amq-sso-realm
+spec:
+  realm:
+    realm: amq-sso-realm
+    enabled: True
+    displayName: amq-sso-realm
+  externalAccess:
+    enabled: true
+  instanceSelector:
+    matchLabels:
+      app: sso
+---
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakClient
+metadata:
+  name: amq-broker
+  labels:
+    app: sso
+spec:
+  client:
+    enabled: true
+    clientAuthenticatorType: client-secret
+    clientId: amq-broker
+    name: amq-broker
+    publicClient: false
+    authorizationServicesEnabled: true
+    authorizationSettings:
+      allowRemoteResourceManagement: true
+      resources:
+        - attributes:
+            deleteDurableQueue: "queue1_admin"
+            manage: "queue1_admin"
+            createNonDurableQueue: "queue1_admin"
+            send: "queue1_admin"
+            deleteAddress: "queue1_admin"
+            browse: "queue1_admin"
+            createDurableQueue: "queue1_admin"
+            deleteNonDurableQueue: "queue1_admin"
+            createAddress: "queue1_admin"
+            consume: "queue1_admin"
+          displayName: jms.queue.queue1
+          name: jms.queue.queue1
+          ownerManagedAccess: false
+          type: JMS_QUEUE
+        - attributes:
+            deleteDurableQueue: "queue2_admin"
+            manage: "queue2_admin"
+            createNonDurableQueue: "queue2_admin"
+            send: "queue2_admin"
+            deleteAddress: "queue2_admin"
+            browse: "queue2_admin"
+            createDurableQueue: "queue2_admin"
+            deleteNonDurableQueue: "queue2_admin"
+            createAddress: "queue2_admin"
+            consume: "queue2_admin"
+          displayName: jms.queue.queue2
+          name: jms.queue.queue2
+          ownerManagedAccess: false
+          type: JMS_QUEUE
+    directAccessGrantsEnabled: true
+    protocol: "openid-connect"
+    serviceAccountsEnabled: true
+    standardFlowEnabled: false
+    secret: 4393af74-52c9-11ec-bf63-0242ac130002
+  roles:
+    - name: queue1_admin
+    - name: queue1_consume
+    - name: queue1_publish
+    - name: queue2_admin
+    - name: queue2_consume
+    - name: queue2_publish
+    - name: queue3_admin
+    - name: queue3_consume
+    - name: queue3_publish
+    - name: queue4_admin
+    - name: queue4_consume
+    - name: queue4_publish
+    - name: queue5_admin
+    - name: queue5_consume
+    - name: queue5_publish
+    - name: queue6_admin
+    - name: queue6_consume
+    - name: queue6_publish
+    - name: queue7_admin
+    - name: queue7_consume
+    - name: queue7_publish
+    - name: queue8_admin
+    - name: queue8_consume
+    - name: queue8_publish
+    - name: queue9_admin
+    - name: queue9_consume
+    - name: queue9_publish
+    - name: queue10_admin
+    - name: queue10_consume
+    - name: queue10_publish
+  realmSelector:
+     matchLabels:
+      realm: amq-sso-realm
