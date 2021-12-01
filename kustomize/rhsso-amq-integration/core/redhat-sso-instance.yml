@@ -21,8 +21,6 @@ spec:
     realm: amq-sso-realm
     enabled: True
     displayName: amq-sso-realm
-  externalAccess:
-    enabled: true
   instanceSelector:
     matchLabels:
       app: sso
