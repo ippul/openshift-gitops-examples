@@ -52,7 +52,7 @@ spec:
             createDurableQueue: "queue1_admin"
             deleteNonDurableQueue: "queue1_admin"
             createAddress: "queue1_admin"
-            consume: "queue1_admin"
+            consume: "queue1_admin, queue1_consume"
           displayName: jms.queue.queue1
           name: jms.queue.queue1
           ownerManagedAccess: false
