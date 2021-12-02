@@ -72,21 +72,6 @@ spec:
           name: jms.queue.queue2
           ownerManagedAccess: false
           type: JMS_QUEUE
-        - attributes:
-            deleteDurableQueue: "queue3_admin"
-            manage: "queue3_admin"
-            createNonDurableQueue: "queue3_admin"
-            send: "queue3_admin"
-            deleteAddress: "queue3_admin"
-            browse: "queue3_admin"
-            createDurableQueue: "queue3_admin"
-            deleteNonDurableQueue: "queue3_admin"
-            createAddress: "queue3_admin"
-            consume: "queue3_admin"
-          displayName: jms.queue.queue3
-          name: jms.queue.queue3
-          ownerManagedAccess: false
-          type: JMS_QUEUE
     directAccessGrantsEnabled: true
     protocol: "openid-connect"
     serviceAccountsEnabled: true
